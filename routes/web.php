@@ -20,7 +20,7 @@ Route::get('/contacts', function () {
     //,["name"=>"Alexander "]
     return view('homepage.home',["name"=>"Alexander "]);
 });
-Route::get('/',function(){
+Route::get('/teas',function(){
 $teas=[
    [ "name"=>"masala","price"=>10,"id"=>1],
      [ "name"=>"ginger","price"=>20,"id"=>2],
@@ -28,4 +28,15 @@ $teas=[
       [ "name"=>"chai","price"=>10,"id"=>4],
 ];
     return view('teas.tea',['teas'=>$teas]);
+});
+
+// handling and id 
+Route::get('/teas/{id}',function($id){
+$teas=[
+   [ "name"=>"masala","price"=>10,"id"=>1],
+     [ "name"=>"ginger","price"=>20,"id"=>2],
+       [ "name"=>"Assam","price"=>10,"id"=>3],
+      [ "name"=>"chai","price"=>10,"id"=>4],
+];
+    return view('teas.teadetails',['tea'=>$teas[$id -1]]);
 });
