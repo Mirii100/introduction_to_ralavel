@@ -9,4 +9,5 @@
 </h1>
 <h2>{{$tea['price']}}</h2>
 <a href="/teas">Go back </a>
+<a href="/">home</a>
 </x-layout>

@@ -6,14 +6,14 @@
     <title>Introduction to laravel</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class="bg-grey-900 text-blue">
+<body class="bg-grey-900 text-white">
 
 <nav>
     <a href="/contacts">home</a>
     
     <a href="/about">about</a>
   
-
+    <a href="/post">posts </a>
 </nav>
     
 </body>
