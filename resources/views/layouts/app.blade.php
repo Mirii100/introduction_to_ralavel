@@ -12,10 +12,16 @@
     <ul class="flex items-center">
         @auth
  <li><a href="#"class="p-3">homepage</a></li>
+
         <li><a href="{{route('dashboard')}}"class="p-3">Dashboard</a></li>
-        <li><a href="#"class="p-3">Post</a></li>
+   
+
+        <li><a href="{{route('posts')}}"class="p-3">Post</a></li>
+       <form action="{{route('logout')}}" method="post">
+@csrf
+       <button type="submit"  class="p-3">Logout</button>
+       </form>
        
-           <li><a href="{{route('logout')}}"class="p-3">Logout</a></li>
         @endauth
         @guest
   <li><a href="{{route('login')}}"class="p-3">login</a></li>

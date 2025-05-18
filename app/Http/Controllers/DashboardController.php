@@ -9,7 +9,8 @@ class DashboardController extends Controller
     //function for dashboard 
 
     public function index(){
-    dd(auth()->user());
-        return view('dashboard');
+    dd(auth()->user()->name);//identifying tthrough name 
+        dd(auth()->user()->posts);
+    return view('dashboard');
     }
 }

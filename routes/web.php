@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -60,3 +61,7 @@ Route::post('/login',[LoginController::class,'store']);
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 //logout
 Route::get('/logout',[LogoutController::class,'store'])->name('logout');
+//posts controller 
+
+Route::get('/posts',[PostController::class,'index'])->name('posts');
+Route::post('/posts',[PostController::class,'store']);
