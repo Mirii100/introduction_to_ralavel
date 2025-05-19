@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\PageController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostController;
 Route::get('/', function () {
-    return view('welcome');
+    return view('templates.index');
 })->name('home');
 
 Route::get('/about', function () {
@@ -65,3 +66,72 @@ Route::get('/logout',[LogoutController::class,'store'])->name('logout');
 
 Route::get('/posts',[PostController::class,'index'])->name('posts');
 Route::post('/posts',[PostController::class,'store']);
+
+
+Route::get('/', function () {
+    return view('templates.index');
+})->name('home');
+
+
+
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
+Route::get('/admissions', function () {
+    return view('templates.admissions');
+})->name('admissions');
+
+Route::get('/academics', function () {
+    return view('templates.academics');
+})->name('academics');
+
+Route::get('/faculty-staff', function () {
+    return view('templates.faculty-staff');
+})->name('faculty-staff');
+
+Route::get('/campus-facilities', function () {
+    return view('templates.campus-facilities');
+})->name('campus-facilities');
+
+Route::get('/students-life', function () {
+    return view('templates.students-life');
+})->name('students-life');
+
+Route::get('/news', function () {
+    return view('templates.news');
+})->name('news');
+
+Route::get('/events', function () {
+    return view('templates.events');
+})->name('events');
+
+Route::get('/alumni', function () {
+    return view('templates.alumni');
+})->name('alumni');
+
+Route::get('/news-details', function () {
+    return view('templates.news-details');
+})->name('news-details');
+
+Route::get('/event-details', function () {
+    return view('templates.event-details');
+})->name('event-details');
+
+Route::get('/privacy', function () {
+    return view('templates.privacy');
+})->name('privacy');
+
+Route::get('/terms-of-service', function () {
+    return view('templates.terms-of-service');
+})->name('terms');
+
+Route::get('/404', function () {
+    return view('templates.404');
+})->name('404');
+
+Route::get('/starter-page', function () {
+    return view('templates.starter-page');
+})->name('starter-page');
+
+Route::get('/contact', function () {
+    return view('templates.contact');
+})->name('contact');
