@@ -4,3 +4,6 @@
 @tailwind componets;
 @tailwind utilities ;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
