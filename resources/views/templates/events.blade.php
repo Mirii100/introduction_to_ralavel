@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+
+@section('title')
+our Events 
+@endsection
 @section('content')
 
 

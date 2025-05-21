@@ -1,5 +1,8 @@
 @extends('layouts.base')
 
+@section('title')
+starter
+@endsection
 @section('content')
 
 

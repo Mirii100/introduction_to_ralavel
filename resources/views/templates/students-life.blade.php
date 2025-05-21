@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+
+@section('title')
+Student-life
+@endsection
 @section('content')
 
     <!-- Page Title -->

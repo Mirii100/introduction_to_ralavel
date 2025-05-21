@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index</title>
+  <title>@yield('title')</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
 
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">

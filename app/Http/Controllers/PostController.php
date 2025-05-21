@@ -23,7 +23,7 @@ $this->validate($request,[
 'body'=>'required'
 
 ]);
-$request->user()->posts()-create(
+$request->user()->posts()->create(
     [
         'body'=>$request->body
     ]

@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+
+@section('title')
+Terms_of_service
+@endsection
 @section('content')
 
     <!-- Page Title -->

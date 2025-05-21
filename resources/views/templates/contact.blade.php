@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+
+@section('title')
+Contacts
+@endsection
 @section('content')
 
 

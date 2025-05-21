@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('title')
+Alumni
+@endsection
+
 @section('content')
 
 
@@ -283,4 +287,4 @@
     </section><!-- /Alumni Section -->
 
 
-@section
+@endsection

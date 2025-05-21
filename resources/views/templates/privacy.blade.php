@@ -1,5 +1,10 @@
 @extends('layouts.base')
 
+
+
+@section('title')
+Privacy
+@endsection
 @section('content')
 
 

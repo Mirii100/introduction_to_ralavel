@@ -1,5 +1,8 @@
  
 @extends('layouts.base')
+@section('title')
+home
+@endsection
 
 @section('content')
 
@@ -9,6 +12,7 @@
     <section id="hero" class="hero section dark-background">
 
       <div class="hero-container">
+                   <!-- <img src="assets/img/misc/signature-1.webp" alt="Principal's Signature" width="120"> -->
         <video autoplay="" muted="" loop="" playsinline="" class="video-background">
           <source src="assets/img/education/video-2.mp4" type="video/mp4">
         </video>
