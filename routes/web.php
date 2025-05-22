@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\PageController;
 
 use Illuminate\Support\Facades\Route;
@@ -11,13 +13,13 @@ Route::get('/', function () {
     return view('templates.index');
 })->name('home');
 
-Route::get('/about', function () {
-    //to call the path use 
-    //nameof folder.name_of_the_file
-    //you can also pass second agument in return view  likke
-    //,["name"=>"Alexander "]
-    return view('about.about',["name"=>"Alexander "]);
-});
+// Route::get('/about', function () {
+//     //to call the path use 
+//     //nameof folder.name_of_the_file
+//     //you can also pass second agument in return view  likke
+//     //,["name"=>"Alexander "]
+//     return view('about.about',["name"=>"Alexander "]);
+// });
 Route::get('/contacts', function () {
     //to call the path use 
     //nameof folder.name_of_the_file
@@ -74,7 +76,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/about', [AdministrationController::class, 'index'])->name('about');
 
 Route::get('/admissions', function () {
     return view('templates.admissions');

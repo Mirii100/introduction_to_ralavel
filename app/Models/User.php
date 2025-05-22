@@ -9,6 +9,26 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
+
+// One to one
+public function profile()
+{
+return $this->hasOne(Profile::class);
+}
+// One to many
+public function post()
+{
+return $this->hasMany(Post::class);
+}
+// Many to many
+public function roles()
+{
+return $this->belongsToMany(Role::class)
+->withPivot('expires_at')
+->withTimestamps();
+}
+  
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
