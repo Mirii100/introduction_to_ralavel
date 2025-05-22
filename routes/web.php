@@ -137,3 +137,11 @@ Route::get('/starter-page', function () {
 Route::get('/contact', function () {
     return view('templates.contact');
 })->name('contact');
+
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrate-production', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return '✅ Migrations executed successfully on Render.';
+});
