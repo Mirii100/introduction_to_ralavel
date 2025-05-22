@@ -9,19 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('administration_sections', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('administration_sections', function (Blueprint $table) {
+        $table->id();
+        $table->string('subtitle')->nullable();
+        $table->string('heading')->nullable();
+        $table->text('description')->nullable();
+        $table->integer('years_of_excellence')->default(0);
+        $table->integer('faculty_members')->default(0);
+        $table->integer('student_success')->default(0);
+        $table->timestamps();
+    });
+}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('administration_sections');
-    }
+public function down()
+{
+    Schema::dropIfExists('administration_sections');
+}
+
 };
