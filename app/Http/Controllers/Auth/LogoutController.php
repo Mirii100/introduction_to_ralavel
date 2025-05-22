@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Validator;
+ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
     //
-    public function store(){
-        auth()->logout();
-        return redirect()->route('home');
-    }
+  
+
+public function store()
+{
+    Auth::logout(); // Equivalent to auth()->logout();
+    return redirect()->route('home');
+}
+
 }
