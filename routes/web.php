@@ -139,9 +139,9 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
-use Illuminate\Support\Facades\Artisan;
+// use Illuminate\Support\Facades\Artisan;
 
-Route::get('/migrate-production', function () {
-    Artisan::call('migrate', ['--force' => true]);
-    return '✅ Migrations executed successfully on Render.';
-});
+// Route::get('/migrate-production', function () {
+//     Artisan::call('migrate', ['--force' => true]);
+//     return '✅ Migrations executed successfully on Render.';
+// });
