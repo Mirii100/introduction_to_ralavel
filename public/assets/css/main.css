@@ -864,7 +864,7 @@ section,
 
 .hero .hero-container .stats-card {
   background-color: color-mix(in srgb, var(--surface-color), transparent 95%);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -5224,7 +5224,7 @@ section,
 .pagination-2 li.ellipsis {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   padding: 8px 16px;
-  user-select: none;
+  /* user-select: none; */
 }
 
 .pagination-2 li a {
