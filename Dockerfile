@@ -40,7 +40,9 @@ RUN php -v
 RUN apt-get update \
     && apt-get install -y --no-install-recommends apt-utils \
     && apt-get install -y php8.3-pgsql \
-    && rm -rf /var/lib/apt/lists/*
+   
+   
+RUN apt-get update && apt-get install -y php-pgsql    && rm -rf /var/lib/apt/lists/*
 
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
