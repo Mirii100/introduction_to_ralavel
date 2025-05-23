@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;   // ← add this
+ 
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,12 +20,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+   public function boot()
     {
-        //
-
-         if (env('APP_ENV') === 'production') {
-        URL::forceScheme('https');
-    }
+        // In production, if the 'programs' table is missing, run migrations
+        if (app()->environment('production') && ! Schema::hasTable('programs')) {
+            Artisan::call('migrate', ['--force' => true]);
+        }
     }
 }
