@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.3-fpm
 
 # Install dependencies including pdo_pgsql
 RUN apt-get update && apt-get install -y \
@@ -35,12 +35,18 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN apt-get update && apt-get install -y php8.3-pgsql
-RUN php -v
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-utils \
-    && apt-get install -y php8.3-pgsql \
-   
+# Install PHP 8.3 and pgsql extension via Sury PHP repo
+RUN apt-get update && apt-get install -y \
+    lsb-release \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg && \
+    curl -fsSL https://packages.sury.org/php/apt.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/php.gpg && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
+    apt-get update && \
+    apt-get install -y php8.3 php8.3-cli php8.3-pgsql php8.3-common
+
    
 RUN apt-get update && apt-get install -y php-pgsql    && rm -rf /var/lib/apt/lists/*
 
