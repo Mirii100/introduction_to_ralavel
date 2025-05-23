@@ -23,6 +23,20 @@ RUN a2enmod rewrite
 # Set Apache document root to Laravel public folder
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
+
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm
+
+# Copy and build frontend assets
+COPY package*.json ./
+RUN npm install
+COPY resources resources
+COPY vite.config.js vite.config.js
+RUN npm run build
+
+
 # Update Apache config to use the new document root
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
 
