@@ -4,55 +4,47 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\models\User;
-use illuminate\Support\Facades\Hash;
-
-
+use App\Models\User;
+use App\Models\Program;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
+
 {
-    //create our function 
+  public function index()
+{
+    $programs = Program::all();
+    return view('auth.register', compact('programs'));
+}
+   public function store(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255',
+        'username' => 'required|max:255|unique:users,username',
+        'email' => 'required|email|max:255|unique:users,email',
+        'password' => 'required|confirmed',
+        'program_id' => 'required|exists:programs,id', // ✅ Correct validation rule
+    ]);
 
-    public function index(){
-
-        return view('auth.register');
+    if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
     }
-    public function store(Request $request)
-    {
-        //die-do or kill the page dd
-       // dd('cool ');
 
+    // ✅ Create the user with program_id
+    $user = User::create([
+        'name' => $request->name,
+        'username' => $request->username,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'program_id' => $request->program_id,
+    ]);
 
-       //validate 
-//dd($request->email);
-        $this->validate($request,
-        [
-            'name'=>'required|max:255',
-            'username'=>'required|max:255',
-            'email'=>'required|email|max:255', 
-            'password'=>'required|confirmed',
-            
-            ]
-        );
+    Auth::login($user);
 
-        User::create([
-            'name'=>$request->name,
-            'username'=>$request->username,
-            'email'=>$request->email,
-            'password'=>Hash::$request->password,//used for hashing
-        ]
-        );
+    return redirect()->route('dashboard');
+}
 
-        
-dd('store');
-
-       //storeuser
-
-        //sign user in 
-auth()->user();
-auth()->attempt($request->only('email','password'));
-
-
-       //redirect
-       return redirect()->route('dashboard');
-    }
 }

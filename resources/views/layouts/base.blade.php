@@ -36,14 +36,22 @@
 
       <a href="index.blade.php" class="logo d-flex align-items-center">
        
-        <h1 class="sitename">N</h1>
+        <h1 class="sitename">AlexiaSchool</h1>
       </a>
 
      <nav id="navmenu" class="navmenu">
   <ul>
+    @guest
     <li><a href="{{ route('home') }}" class="active">Home</a></li>
+   
+  <li><a href="{{route('login')}}" class="active">login</a></li>
+    <li><a href="{{ route('register') }}" class="active">register</a></li>
+    
+      <!-- <li><a href="{{ route('logout') }}" class="active">logout</a></li> -->
+     
 
     <li class="dropdown"><a href="{{ route('about') }}"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+ 
       <ul>
         <li><a href="{{ route('about') }}">About Us</a></li>
         <li><a href="{{ route('admissions') }}">Admissions</a></li>
@@ -52,23 +60,29 @@
         <li><a href="{{ route('campus-facilities') }}">Campus &amp; Facilities</a></li>
       </ul>
     </li>
-
+    @endguest
+@auth
     <li><a href="{{ route('students-life') }}">Students Life</a></li>
+    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
     <li><a href="{{ route('news') }}">News</a></li>
     <li><a href="{{ route('events') }}">Events</a></li>
+      
+   
     <li><a href="{{ route('alumni') }}">Alumni</a></li>
 
     <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
       <ul>
         <li><a href="{{ route('news-details') }}">News Details</a></li>
         <li><a href="{{ route('event-details') }}">Event Details</a></li>
+        
         <li><a href="{{ route('privacy') }}">Privacy</a></li>
         <li><a href="{{ route('terms') }}">Terms of Service</a></li>
         <li><a href="{{ route('404') }}">Error 404</a></li>
         <li><a href="{{ route('starter-page') }}">Starter Page</a></li>
       </ul>
+      @endauth
     </li>
-
+@guest
     <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
       <ul>
         <li><a href="#">Dropdown 1</a></li>
@@ -88,7 +102,18 @@
     </li>
 
     <li><a href="{{ route('contact') }}">Contact</a></li>
+    @endguest
+    @auth
+      <form action="{{ route('logout') }}" method="POST"   style="display: inline;">
+    @csrf
+    <button type="submit" >
+        Logout
+    </button>
+    @endauth
+</form>
+
   </ul>
+
   <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 </nav>
 
@@ -106,7 +131,7 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
+          <a href="{{ route('home') }}" class="logo d-flex align-items-center">
             <span class="sitename">AlexiaSchool</span>
           </a>
           <div class="footer-contact pt-3">
@@ -174,7 +199,7 @@
       <p>© <span>Copyright</span> <strong class="px-1 sitename">MyWebsite</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
      
-        Designed by <a href="#">A</a>
+        Designed by <a href="#">AlexiaSchool</a>
       </div>
     </div>
 

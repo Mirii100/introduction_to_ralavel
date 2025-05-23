@@ -25,7 +25,8 @@ home
                 <h1>Empowering Futures Through Education</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae diam ornare, imperdiet est eget, pretium augue. Nullam auctor felis in nibh gravida, eu viverra risus egestas.</p>
                 <div class="cta-buttons">
-                  <a href="#" class="btn-primary">Start Your Journey</a>
+                  <a href="{{ route('register') }}" class="btn-primary">Start Your Journey</a>
+                   
                   <a href="#" class="btn-secondary">Discover Programs</a>
                 </div>
               </div>
@@ -86,17 +87,17 @@ home
             <div class="col-md-6 col-xl-4 col-12 ticker-item">
               <span class="date">NOV 15</span>
               <span class="title">Open House Day</span>
-              <a href="#" class="btn-register">Register</a>
+              <a href="{{ route('register') }}" class="btn-register">Register</a>
             </div>
             <div class="col-md-6 col-12 col-xl-4  ticker-item">
               <span class="date">DEC 5</span>
               <span class="title">Application Workshop</span>
-              <a href="#" class="btn-register">Register</a>
+              <a href="{{ route('register') }}" class="btn-register">Register</a>
             </div>
             <div class="col-md-6 col-12 col-xl-4 ticker-item">
               <span class="date">JAN 10</span>
               <span class="title">International Student Orientation</span>
-              <a href="#" class="btn-register">Register</a>
+              <a href="{{ route('register') }}" class="btn-register">Register</a>
             </div>
           </div>
         </div>
@@ -358,6 +359,15 @@ home
 
     </section><!-- /Featured Programs Section -->
 
+
+    @if($featuredPrograms->count())
+    @foreach($featuredPrograms as $program)
+        <div>{{ $program->title }}</div>
+    @endforeach
+@else
+    <p>No featured programs available.</p>
+@endif
+
     <!-- Students Life Block Section -->
     <section id="students-life-block" class="students-life-block section">
 
@@ -375,7 +385,7 @@ home
               <img src="assets/img/education/education-square-11.webp" class="img-fluid rounded-4 shadow-sm" alt="Students Life">
               <div class="img-overlay">
                 <h3>Discover Campus Life</h3>
-                <a href="students-life.html" class="explore-btn">Explore More <i class="bi bi-arrow-right"></i></a>
+                <a href="{{ route('home') }}" class="explore-btn">Explore More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -426,7 +436,7 @@ home
               </div>
 
               <div class="students-life-cta" data-aos="fade-up" data-aos-delay="600">
-                <a href="students-life.html" class="btn btn-primary">View All Student Activities</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">View All Student Activities</a>
               </div>
             </div>
           </div>
@@ -691,7 +701,7 @@ home
               <p class="post-category">Politics</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
+                <a href="{{ route('home') }}">Dolorum optio tempore voluptas dignissimos</a>
               </h2>
 
               <div class="d-flex align-items-center">
@@ -717,7 +727,7 @@ home
               <p class="post-category">Sports</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
+                <a href="{{ route('home') }}">Nisi magni odit consequatur autem nulla dolorem</a>
               </h2>
 
               <div class="d-flex align-items-center">
@@ -743,7 +753,7 @@ home
               <p class="post-category">Entertainment</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
+                <a href="{{ route('home') }}">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
               </h2>
 
               <div class="d-flex align-items-center">

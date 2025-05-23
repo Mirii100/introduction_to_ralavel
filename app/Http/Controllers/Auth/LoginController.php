@@ -4,31 +4,26 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //
-    public function index(){
-
-
+    public function index()
+    {
         return view('auth.login');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-
-    public function store(){
-       
-        $this->validate($request,
-        [
-           
-            'email'=>'required|email', 
-            'password'=>'required',
-            
-            ]
-        );
-        if(!auth()->attempt($request->only('email','password'))){
-            return back()->with('status','invalid login ');
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return back()->with('status', 'Invalid login credentials');
         }
+
         return redirect()->route('dashboard');
     }
 }

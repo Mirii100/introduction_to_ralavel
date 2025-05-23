@@ -15,7 +15,7 @@ Events
         <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li class="current">Event Details</li>
           </ol>
         </nav>

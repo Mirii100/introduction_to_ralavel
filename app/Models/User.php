@@ -42,6 +42,7 @@ return $this->belongsToMany(Role::class)
         'email',
         'username',
         'password',
+        'avatar', 'fees_paid'
     ];
 
     /**
@@ -69,4 +70,11 @@ return $this->belongsToMany(Role::class)
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+
+    public function program()
+{
+    return $this->belongsTo(Program::class);
+}
+
 }

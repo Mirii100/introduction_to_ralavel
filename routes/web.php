@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\PageController;
 
+ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -61,18 +62,28 @@ Route::post('/register',[RegisterController::class,'store']);
 Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/login',[LoginController::class,'store']);
 // dashboard 
-Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
+
 //logout
-Route::get('/logout',[LogoutController::class,'store'])->name('logout');
+// Route::post('/logout',[LogoutController::class,'store'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
 //posts controller 
 
 Route::get('/posts',[PostController::class,'index'])->name('posts');
 Route::post('/posts',[PostController::class,'store']);
 
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('templates.index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 
 
@@ -137,11 +148,18 @@ Route::get('/starter-page', function () {
 Route::get('/contact', function () {
     return view('templates.contact');
 })->name('contact');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::put('/dashboard/update', [DashboardController::class, 'update'])->name('dashboard.update');
+    Route::get('/dashboard/fee-pdf', [DashboardController::class, 'generateFeePdf'])->name('dashboard.fee-pdf');
+     Route::get('/dashboard/fee-pdf/view',   [DashboardController::class, 'viewFeePdf'])->name('dashboard.fee-pdf.view');
+    Route::get('/dashboard/fee-pdf/download',[DashboardController::class, 'downloadFeePdf'])->name('dashboard.fee-pdf.download');
+     Route::post('/dashboard/pay-fee', [DashboardController::class, 'payFee'])
+         ->name('dashboard.payFee');
+});
 
 
-// use Illuminate\Support\Facades\Artisan;
-
-// Route::get('/migrate-production', function () {
-//     Artisan::call('migrate', ['--force' => true]);
-//     return '✅ Migrations executed successfully on Render.';
-// });
+Route::get('/migrate-production', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return '✅ Migrations executed successfully on Render.';
+});
