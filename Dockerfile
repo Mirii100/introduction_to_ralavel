@@ -1,6 +1,6 @@
-FROM php:8.3-fpm
+FROM php:8.3-apache
 
-# Install dependencies including pdo_pgsql
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -20,48 +20,35 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-WORKDIR /var/www/html
-
-COPY . .
-
+# Set document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-# Install dependencies (including PostgreSQL support)
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
-
-# Continue with Composer and Laravel setup
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Install PHP 8.3 and pgsql extension via Sury PHP repo
-RUN apt-get update && apt-get install -y \
-    lsb-release \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg && \
-    curl -fsSL https://packages.sury.org/php/apt.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/php.gpg && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
-    apt-get update && \
-    apt-get install -y php8.3 php8.3-cli php8.3-pgsql php8.3-common
-
-   
-RUN apt-get update && apt-get install -y php-pgsql    && rm -rf /var/lib/apt/lists/*
-
-
+# Change Apache config to use public as the root
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
 
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy project files
+COPY . .
+
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Mark Laravel dir safe for git
 RUN git config --global --add safe.directory /var/www/html
 
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Run Laravel migrations
 RUN php artisan migrate --force
 
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Expose port 80
 EXPOSE 80
 
+# Start Apache
 CMD ["apache2-foreground"]
