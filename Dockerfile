@@ -26,6 +26,17 @@ COPY . .
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
+# Install dependencies (including PostgreSQL support)
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# Continue with Composer and Laravel setup
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+RUN apt-get update && apt-get install -y php-pgsql
+
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
