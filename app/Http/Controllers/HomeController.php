@@ -10,7 +10,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $featuredPrograms = Program::where('is_featured', true)->get(); // Or however you filter
+  $featuredPrograms = Program::where('is_featured', true)->get(); // Or however you filter
         // Fetch other data if needed
 
         return view('templates.index', compact('featuredPrograms'));

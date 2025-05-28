@@ -4,14 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+    use App\Models\AdministrationSection;
 class AdministrationSectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     
-    use App\Models\AdministrationSection;
+
 
 public function run()
 {

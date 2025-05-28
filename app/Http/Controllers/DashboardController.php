@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;                          // ← correct namespace
+use App\Models\User;                       
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;           // ← correct import
+use Barryvdh\DomPDF\Facade\Pdf as PDF;           
 
 class DashboardController extends Controller
 {
