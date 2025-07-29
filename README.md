@@ -1,3 +1,10 @@
+
+# Alexia School
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fbd1cd90-f228-4c7c-9fd8-31c44f22f637/deploy-status)](https://app.netlify.com/sites/alexiaschool/deploys)
+
+A Laravel project for the Alexia School platform...
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
