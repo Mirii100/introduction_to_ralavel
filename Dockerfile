@@ -72,4 +72,6 @@ RUN php artisan config:cache && \
 EXPOSE 80
 
 # Start Laravel app and Apache
-CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
+# CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
+
+CMD ["sh", "-c", "php artisan migrate --force || true && apache2-foreground"]
