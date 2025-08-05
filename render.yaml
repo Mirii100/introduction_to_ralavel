@@ -10,8 +10,6 @@ services:
     envVars:
       - key: APP_ENV
         value: production
-      - key: APP_KEY
-        generateValue: true
       - key: APP_DEBUG
         value: false
       - key: APP_URL
@@ -34,4 +32,6 @@ services:
         value: file
       - key: QUEUE_CONNECTION
         value: sync
+      - key: APP_KEY
+        generateValue: true
     postDeployCommand: php artisan migrate --force
